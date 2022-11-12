@@ -1,0 +1,23 @@
+{
+    "site": {
+        "name": "short.ly",
+        "description": "Short Link Generator"
+    },
+    "page": {
+        "home": {
+            "title": "short.ly",
+            "sub-title": "Short Link Generator",
+            "signin": "Sign in",
+            "signup": "Create my account",
+            "by": "Charles Devif • Lucky Marty • Thomas J",
+            "bg-img": "./inc/assets/medias/homepage_bg.jpg"
+        },
+        "dashboard": {
+            "title": "Dashboard",
+            "h1": "Welcome to your dashboard!"
+        },
+        "login": {
+            "title": "Login"
+        }
+    }
+}

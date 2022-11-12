@@ -1,0 +1,52 @@
+#index {
+    main {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div {
+            color: $white;
+            text-align: center;
+
+            display: grid;
+            gap: 20px;
+
+            h1 {
+                font-size: 4rem;
+                font-family: $font_2;
+            }
+
+            p {
+                font-size: 1.1rem;
+                font-family: $font_1_bold;
+                text-transform: uppercase;
+            }
+
+            .buttons {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                .btn {
+
+                    &-signup,
+                    &-signin {
+                       @include btn_1();
+                    }
+                }
+            }
+        }
+
+        .by {
+            color: $white;
+
+            font-size: .8rem;
+            font-family: $font_1_light;
+            font-weight: 400;
+            text-transform: uppercase;
+
+            position: absolute;
+            bottom: 1rem;
+        }
+    }
+}
