@@ -28,7 +28,13 @@ require_once('../inc/functions/data.php');
     <?php
     if (filter_input(INPUT_GET, 'admin') !== null && $role == 'admin') {
         include_once('./_partials/admin.php');
-    } else {
+    } 
+    
+    else if (filter_input(INPUT_GET, 'myaccount') !== null) {
+        include_once('./_partials/myaccount.php');
+    }
+    
+    else {
         include_once('./_partials/dashboard.php');
     }
     ?>

@@ -289,5 +289,21 @@
                 @include table();
             }
         }
+
+
+
+        div.myaccount {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            
+            form {
+                width: 350px;
+            }
+    
+            @include form();
+        }
     }
 }

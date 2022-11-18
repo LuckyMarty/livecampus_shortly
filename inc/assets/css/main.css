@@ -37,7 +37,7 @@ a {
 
 .lottie-bg {
   transform: rotate(90deg) scale(2);
-  opacity: 0.2;
+  opacity: 0.5;
   position: fixed;
   top: 0;
   left: 0;
@@ -450,6 +450,90 @@ a {
   font-weight: bold;
   text-align: left;
   border-bottom: 2px solid #292929;
+}
+#dashboard main div.myaccount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+#dashboard main div.myaccount form {
+  width: 350px;
+}
+#dashboard main div.myaccount form .group {
+  margin: 25px 0;
+}
+#dashboard main div.myaccount form .group .input {
+  position: relative;
+}
+#dashboard main div.myaccount form .group .input input {
+  border: 2px solid #eeeeee;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+}
+#dashboard main div.myaccount form .group .input input:not(:-moz-placeholder-shown) + span {
+  top: -175%;
+  padding: 0 10px;
+  margin: 0 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#dashboard main div.myaccount form .group .input input:not(:-ms-input-placeholder) + span {
+  top: -175%;
+  padding: 0 10px;
+  margin: 0 10px;
+  width: fit-content;
+}
+#dashboard main div.myaccount form .group .input input:not(:placeholder-shown) + span, #dashboard main div.myaccount form .group .input input:focus + span {
+  top: -175%;
+  padding: 0 10px;
+  margin: 0 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#dashboard main div.myaccount form .group .input input:not(:-moz-placeholder-shown):valid {
+  border-color: #64996b;
+}
+#dashboard main div.myaccount form .group .input input:not(:-ms-input-placeholder):valid {
+  border-color: #64996b;
+}
+#dashboard main div.myaccount form .group .input input:not(:placeholder-shown):valid, #dashboard main div.myaccount form .group .input input:focus:valid {
+  border-color: #64996b;
+}
+#dashboard main div.myaccount form .group .input input:not(:-moz-placeholder-shown):not(:valid) {
+  border-color: #FF6961;
+}
+#dashboard main div.myaccount form .group .input input:not(:-ms-input-placeholder):not(:valid) {
+  border-color: #FF6961;
+}
+#dashboard main div.myaccount form .group .input input:not(:placeholder-shown):not(:valid), #dashboard main div.myaccount form .group .input input:focus:not(:valid) {
+  border-color: #FF6961;
+}
+#dashboard main div.myaccount form .group .input span {
+  position: absolute;
+  left: 0;
+  margin: 20px;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  cursor: text;
+}
+#dashboard main div.myaccount form .submit {
+  border: 2px solid #eeeeee;
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+#dashboard main div.myaccount form .submit:hover {
+  background-color: #64996b;
+  border-color: #64996b;
+  color: white;
 }
 
 #login main,

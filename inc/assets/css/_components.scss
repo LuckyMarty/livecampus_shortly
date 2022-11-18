@@ -81,3 +81,70 @@
         }
     }
 }
+
+
+
+
+@mixin form {
+    form {
+
+        .group {
+            margin: 25px 0;
+
+            .input {
+                position: relative;
+
+                input {
+                    @include border();
+                    padding: 20px;
+                    width: 100%;
+
+                    &:not(:placeholder-shown)+span,
+                    &:focus+span {
+                        top: -175%;
+                        padding: 0 10px;
+                        margin: 0 10px;
+                        width: fit-content;
+                    }
+
+                    &:not(:placeholder-shown):valid,
+                    &:focus:valid {
+                        border-color: $color-1;
+                    }
+
+                    &:not(:placeholder-shown):not(:valid),
+                    &:focus:not(:valid) {
+                        border-color: #FF6961;
+                    }
+                }
+
+                span {
+                    position: absolute;
+                    left: 0;
+                    // top: 0;
+                    margin: 20px;
+                    background-color: $white;
+                    transition: all .2s ease-in-out;
+                    cursor: text;
+                }
+            }
+
+        }
+
+        .submit {
+            @include border();
+            width: 100%;
+            padding: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 50px;
+
+            &:hover {
+                background-color: $color-1;
+                border-color: $color-1;
+                color: $white;
+            }
+        }
+    }
+}
