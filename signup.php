@@ -1,7 +1,7 @@
 <!-- Data -->
 <?php
 require_once('./inc/functions/data.php');
-[$data, $page_id, $root] = [pageData('home'), 'login', true];
+[$data, $page_id, $root] = [pageData('home'), 'signup', true];
 ?>
 
 
@@ -16,8 +16,22 @@ require_once('./inc/functions/data.php');
 <main>
 
     <!-- ****** CHARLES ****** -->
-    <!-- TODO: Formulaire de connexion -->
+    <!-- TODO: Formulaire de création de compte -->
     <form action="" method="post">
+        <div class="group">
+            <label for="firstname" class="input">
+                <input type="text" name="firstname" id="firstname" placeholder=" ">
+                <span>First Name</span>
+            </label>
+        </div>
+
+        <div class="group">
+            <label for="lastname" class="input">
+                <input type="text" name="lastname" id="lastname" placeholder=" ">
+                <span>Last Name</span>
+            </label>
+        </div>
+
         <div class="group">
             <label for="email" class="input">
                 <input type="email" name="email" id="email" placeholder=" ">
@@ -32,9 +46,9 @@ require_once('./inc/functions/data.php');
             </label>
         </div>
 
-        <input class="submit" type="submit" value="Login">
+        <input class="submit" type="submit" value="Sign Up">
 
-        <p>No account yet ? <a href="./signup.php">Sign Up Now !</a></p>
+        <p>Already have an account ? <a href="./login.php">Log In Now !</a></p>
     </form>
 
 </main>

@@ -22,7 +22,7 @@ require_once('./inc/functions/data.php');
 
         <div class="buttons">
             <a href="#" class="btn-signup"><?= $data['signup'] ?></a>
-            <a href="#" class="btn-signin"><?= $data['signin'] ?></a>
+            <a href="./login.php" class="btn-signin"><?= $data['signin'] ?></a>
         </div>
     </div>
 

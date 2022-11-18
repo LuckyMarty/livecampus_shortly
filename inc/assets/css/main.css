@@ -35,6 +35,26 @@ a {
   text-decoration: none;
 }
 
+.lottie-bg {
+  transform: rotate(90deg) scale(2);
+  opacity: 0.2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.lottie-bg-1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
 #index main {
   min-height: 100vh;
   display: flex;
@@ -431,13 +451,97 @@ a {
   text-align: left;
   border-bottom: 2px solid #292929;
 }
-#dashboard .lottie-bg {
-  transform: rotate(90deg) scale(2);
-  opacity: 0.2;
-  position: fixed;
-  top: 0;
+
+#login main,
+#signup main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#login main form .group,
+#signup main form .group {
+  margin: 25px 0;
+}
+#login main form .group .input,
+#signup main form .group .input {
+  position: relative;
+}
+#login main form .group .input input,
+#signup main form .group .input input {
+  border: 2px solid #eeeeee;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+}
+#login main form .group .input input:not(:-moz-placeholder-shown) + span, #signup main form .group .input input:not(:-moz-placeholder-shown) + span {
+  top: -175%;
+  padding: 0 10px;
+  margin: 0 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#login main form .group .input input:not(:-ms-input-placeholder) + span, #signup main form .group .input input:not(:-ms-input-placeholder) + span {
+  top: -175%;
+  padding: 0 10px;
+  margin: 0 10px;
+  width: fit-content;
+}
+#login main form .group .input input:not(:placeholder-shown) + span, #login main form .group .input input:focus + span,
+#signup main form .group .input input:not(:placeholder-shown) + span,
+#signup main form .group .input input:focus + span {
+  top: -175%;
+  padding: 0 10px;
+  margin: 0 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#login main form .group .input input:not(:-moz-placeholder-shown):valid, #signup main form .group .input input:not(:-moz-placeholder-shown):valid {
+  border-color: #64996b;
+}
+#login main form .group .input input:not(:-ms-input-placeholder):valid, #signup main form .group .input input:not(:-ms-input-placeholder):valid {
+  border-color: #64996b;
+}
+#login main form .group .input input:not(:placeholder-shown):valid, #login main form .group .input input:focus:valid,
+#signup main form .group .input input:not(:placeholder-shown):valid,
+#signup main form .group .input input:focus:valid {
+  border-color: #64996b;
+}
+#login main form .group .input input:not(:-moz-placeholder-shown):not(:valid), #signup main form .group .input input:not(:-moz-placeholder-shown):not(:valid) {
+  border-color: #FF6961;
+}
+#login main form .group .input input:not(:-ms-input-placeholder):not(:valid), #signup main form .group .input input:not(:-ms-input-placeholder):not(:valid) {
+  border-color: #FF6961;
+}
+#login main form .group .input input:not(:placeholder-shown):not(:valid), #login main form .group .input input:focus:not(:valid),
+#signup main form .group .input input:not(:placeholder-shown):not(:valid),
+#signup main form .group .input input:focus:not(:valid) {
+  border-color: #FF6961;
+}
+#login main form .group .input span,
+#signup main form .group .input span {
+  position: absolute;
   left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
+  margin: 20px;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  cursor: text;
+}
+#login main form .submit,
+#signup main form .submit {
+  border: 2px solid #eeeeee;
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 50px;
+}
+#login main form .submit:hover,
+#signup main form .submit:hover {
+  background-color: #64996b;
+  border-color: #64996b;
+  color: white;
 }/*# sourceMappingURL=main.css.map */
