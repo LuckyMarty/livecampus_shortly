@@ -19,6 +19,8 @@
             </ul>
         </nav>
 
+        <!-- ****** CHARLES ****** -->
+        <!-- TODO: Lien de déconnexion -->
         <a href="#" class="logout">Logout</a>
     </div>
 

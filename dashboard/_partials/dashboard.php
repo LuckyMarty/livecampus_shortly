@@ -19,12 +19,15 @@
         <!-- Quick Views -->
         <div class="cards-top">
             <div><span><i class="fa-solid fa-list-ol"></i></span>
+                <!-- ****** THOMAS ****** -->
                 <p>Total links : 18</p>
             </div>
             <div><span><i class="fa-solid fa-link-slash"></i></span>
+                <!-- ****** THOMAS ****** -->
                 <p>Unpublished links : 12</p>
             </div>
             <div><span><i class="fa-solid fa-link"></i></span>
+                <!-- ****** THOMAS ****** -->
                 <p>Published links : 6</p>
             </div>
             <div><span><i class="fa-solid fa-wrench"></i></span>
@@ -53,6 +56,8 @@
 
                 <tbody>
 
+                    <!-- ****** THOMAS ****** -->
+                    <!-- TODO: Liste des liens -->
                     <?php for ($id = 1; $id <= 18; $id++) : ?>
                         <tr>
                             <td><?= $id ?></td>

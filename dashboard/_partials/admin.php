@@ -13,6 +13,8 @@
             </thead>
 
             <tbody>
+                <!-- ****** CHARLES ****** -->
+                <!-- TODO: Liste de tous les utilisateurs (en tant qu'ADMIN) -->
                 <?php for ($users = 1; $users <= 18; $users++) : ?>
                     <tr>
                         <td>HelloWorld</td>
