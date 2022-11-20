@@ -1,12 +1,14 @@
-
+    <?php
+    require_once("../inc/functions/data.php");
+    ?>
     <div class="dashboard">
         <h1>👋 <?= $data['h1'] ?></h1>
 
         <!-- Add URL -->
-        <form class="add-link" method="post">
+        <form action="../inc/functions/addLink.php" class="add-link" method="post">
             <div class="group">
                 <label class="input">
-                    <input placeholder=" " type="url" required>
+                    <input name="link" placeholder=" " type="url" required>
                     <span>Enter your URL</span>
                 </label>
 
@@ -17,18 +19,30 @@
 
 
         <!-- Quick Views -->
+        <?php 
+            $link = linkData();
+        ?>
         <div class="cards-top">
             <div><span><i class="fa-solid fa-list-ol"></i></span>
                 <!-- ****** THOMAS ****** -->
-                <p>Total links : 18</p>
+                <p>Total links : <?= sizeof($link);?></p>
             </div>
             <div><span><i class="fa-solid fa-link-slash"></i></span>
                 <!-- ****** THOMAS ****** -->
-                <p>Unpublished links : 12</p>
+                <p>Unpublished links : 
+                    <?php
+                        $count = 0;
+                        foreach($link as $l){
+                            if ($l["publish"] == false)
+                                $count++;
+                        }
+                        echo $count;
+                    ?>
+                </p>
             </div>
             <div><span><i class="fa-solid fa-link"></i></span>
                 <!-- ****** THOMAS ****** -->
-                <p>Published links : 6</p>
+                <p>Published links : <?= sizeof($link)-$count;?></p>
             </div>
             <div><span><i class="fa-solid fa-wrench"></i></span>
                 <p style="display: flex;">
@@ -58,18 +72,20 @@
 
                     <!-- ****** THOMAS ****** -->
                     <!-- TODO: Liste des liens -->
-                    <?php for ($id = 1; $id <= 18; $id++) : ?>
+                    <?php 
+                    foreach($link as $l) : 
+                    ?>
                         <tr>
-                            <td><?= $id ?></td>
-                            <td><a href="https://google.com/zkejkrjolnsxixuuxwiwppzlkxnwnxytfezygbeoirhuzehrtuilzehrtjhzlekjrth" target="_blank" rel="noopener noreferrer">https://google.com/zkejkrjolnsxixuuxwiwppzlkxnwnxytfezygbeoirhuzehrtuilzehrtjhzlekjrth</a></td>
-                            <td><a href="https://short.ly/?l=lEiqdAprK" target="_blank">https://short.ly/?l=lEiqdAprK</a></td>
-                            <td>9</td>
+                            <td><?= $l["id"] ?></td>
+                            <td><a href=<?= $l["raw_link"]?> target="_blank" rel="noopener noreferrer"><?= $l["raw_link"]?></a></td>
+                            <td><a href=<?= "../r.php?r=".$l["short_link"]?> target="_blank"><?= "livecampus_shortly/r.php?r=".$l["short_link"]?></a></td>
+                            <td><?= $l["click_count"]?></td>
                             <td>
-                                <input type="checkbox" id="url-<?= $id ?>" checked="checked" /><label for="url-<?= $id ?>"></label>
+                                <input type="checkbox" id="<?= $l["id"] ?>" <?php if($l["publish"]) echo "checked"?> onClick="fetch('../inc/functions/publishLink.php?id=<?= $l["id"] ?>', { method : 'POST'}).then(location.reload())"/><label for="<?= $l["id"] ?>"></label>
                             </td>
-                            <td><a class="delete" href="delete?id=<?= $id ?>"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a class="delete" href="../inc/functions/DeleteLink.php?id=<?= $l["id"] ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
 
                 </tbody>
             </table>

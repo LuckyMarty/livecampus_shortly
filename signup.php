@@ -2,6 +2,8 @@
 <?php
 require_once('./inc/functions/data.php');
 [$data, $page_id, $root] = [pageData('home'), 'signup', true];
+
+
 ?>
 
 
@@ -17,7 +19,7 @@ require_once('./inc/functions/data.php');
 
     <!-- ****** CHARLES ****** -->
     <!-- TODO: Formulaire de création de compte -->
-    <form action="" method="post">
+    <form action="./inc/functions/pages.php" method="post">
         <div class="group">
             <label for="firstname" class="input">
                 <input type="text" name="firstname" id="firstname" placeholder=" ">

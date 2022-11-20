@@ -5,9 +5,15 @@ require_once __DIR__ . '/util.php';
 // ****** CHARLES ******
 // ****** THOMAS  ******
 // TODO: Données
-
-
-
+$user = 'root';
+$password = 'root';
+$dns = 'mysql:dbname=shortly;host=localhost';
+try {
+    
+$dbh = new PDO($dns,$user,$password);
+} catch (\Throwable $th) {
+    throw $th;
+}
 
 
 function data()
@@ -25,4 +31,54 @@ function pageData(string $page):array
 function siteData():array
 {
     return data()['site'];
+}
+
+function linkData():array
+{
+    $author_mail = "test";
+    $request = $GLOBALS["dbh"]->prepare('SELECT * FROM `link` WHERE `author_mail` = "'.$author_mail.'"');
+    $request->execute();
+    $result = $request->fetchAll();
+    return $result;
+}
+function createNewLink(string $url) :bool
+{
+    $short_link = bin2hex(random_bytes(3)) . substr(md5($url), 15,4) . bin2hex(random_bytes(3));
+    $publish = false;
+    $click_count = 0;
+    $raw_link = $url;
+    $author_mail = "test";
+    $request = $GLOBALS["dbh"]->prepare('INSERT INTO link (id, raw_link, short_link, author_mail, click_count ) VALUES (NULL, "'.$raw_link.'", "'.$short_link.'", "'.$author_mail.'", '.$click_count.')');
+    //$request = $GLOBALS["dbh"]->prepare("INSERT INTO `link` (`id`, `raw_link`, `short_link`, `author_mail`, `click_count`, `publish`) VALUES (NULL, ':raw', ':short', ':mail', ':click', ':pub')");
+    //if($request->bindValue('raw', $raw_link) && $request->bindValue('short', $short_link) && $request->bindValue('mail', $author_mail) && $request->bindValue('click', $click_count) && $request->bindValue('pub', $publish))
+    $request->execute();
+    $request->fetchAll();
+    return 0;
+}
+
+function destroyLink(int $id){
+    $request = $GLOBALS["dbh"]->prepare('DELETE FROM link WHERE `link`.`id` = '.$id.'');
+    $request->execute();
+    $request->fetchAll();
+}
+function publishLink(int $id){
+    $publish = 0;
+    $request = $GLOBALS["dbh"]->prepare('SELECT publish FROM `link` WHERE `id` = "'.$id.'"');
+    $request->execute();
+    $result = $request->fetch();
+    var_dump($result);
+    if ($result['publish'] == '0') {
+        $publish = 1;
+    }
+    var_dump($publish);
+    $request = $GLOBALS["dbh"]->prepare('UPDATE `link` SET `publish`='.$publish.' WHERE `id` = "'.$id.'"');
+    $request->execute();
+    $request->fetchAll();
+}
+function getRawLink(string $link){
+    $publish = 0;
+    $request = $GLOBALS["dbh"]->prepare('SELECT raw_link FROM `link` WHERE `short_link` = "'.$link.'"');
+    $request->execute();
+    $result = $request->fetch();
+    return $result['raw_link'];
 }
