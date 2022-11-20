@@ -1,3 +1,7 @@
+<?php
+require_once("../inc/functions/data.php");
+$users = userList();
+?>
 <div class="admin">
     <h1>All users</h1>
 
@@ -5,7 +9,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Username</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -15,14 +18,13 @@
             <tbody>
                 <!-- ****** CHARLES ****** -->
                 <!-- TODO: Liste de tous les utilisateurs (en tant qu'ADMIN) -->
-                <?php for ($users = 1; $users <= 18; $users++) : ?>
+                <?php foreach($users as $user) : ?>
                     <tr>
-                        <td>HelloWorld</td>
-                        <td>Hello</td>
-                        <td>Word</td>
-                        <td>hello.world@www.org</td>
+                        <td><?=$user["firstname"] ?></td>
+                        <td><?=$user["lastname"] ?></td>
+                        <td><?=$user["email"] ?></td>
                     </tr>
-                <?php endfor ?>
+                <?php endforeach ?>
 
             </tbody>
         </table>

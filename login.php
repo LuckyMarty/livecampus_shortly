@@ -1,5 +1,6 @@
 <!-- Data -->
 <?php
+require_once('./inc/functions/login.php');
 require_once('./inc/functions/data.php');
 [$data, $page_id, $root] = [pageData('home'), 'login', true];
 ?>

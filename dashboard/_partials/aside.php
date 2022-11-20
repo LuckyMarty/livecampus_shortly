@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <aside style="background-image: url('../inc/assets/medias/homepage_bg.jpg');">
 
     <div>
@@ -6,8 +9,9 @@
         <nav>
             <ul>
                 <li><a href="./"><i class="fa-solid fa-grip"></i> Dashboard</a></li>
-
-                <?php if (isset($role) && $role == 'admin') : ?>
+<!-- TODO: gére le role  -->
+                <?php 
+                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') : ?>
                     <li><a href="?admin"><i class="fa-solid fa-users"></i> Admin</a></li>
                 <?php endif; ?>
                 
@@ -21,7 +25,7 @@
 
         <!-- ****** CHARLES ****** -->
         <!-- TODO: Lien de déconnexion -->
-        <a href="#" class="logout">Logout</a>
+        <a href="../inc/functions/logout.php" class="logout">Logout</a>
     </div>
 
 </aside>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/util.php';
+session_start();
 
 
 // ****** CHARLES ******
@@ -35,7 +36,7 @@ function siteData():array
 
 function linkData():array
 {
-    $author_mail = "test";
+    $author_mail = $_SESSION['email'];
     $request = $GLOBALS["dbh"]->prepare('SELECT * FROM `link` WHERE `author_mail` = "'.$author_mail.'"');
     $request->execute();
     $result = $request->fetchAll();
@@ -47,7 +48,7 @@ function createNewLink(string $url) :bool
     $publish = false;
     $click_count = 0;
     $raw_link = $url;
-    $author_mail = "test";
+    $author_mail = $_SESSION['email'];
     $request = $GLOBALS["dbh"]->prepare('INSERT INTO link (id, raw_link, short_link, author_mail, click_count ) VALUES (NULL, "'.$raw_link.'", "'.$short_link.'", "'.$author_mail.'", '.$click_count.')');
     //$request = $GLOBALS["dbh"]->prepare("INSERT INTO `link` (`id`, `raw_link`, `short_link`, `author_mail`, `click_count`, `publish`) VALUES (NULL, ':raw', ':short', ':mail', ':click', ':pub')");
     //if($request->bindValue('raw', $raw_link) && $request->bindValue('short', $short_link) && $request->bindValue('mail', $author_mail) && $request->bindValue('click', $click_count) && $request->bindValue('pub', $publish))
@@ -76,9 +77,38 @@ function publishLink(int $id){
     $request->fetchAll();
 }
 function getRawLink(string $link){
-    $publish = 0;
-    $request = $GLOBALS["dbh"]->prepare('SELECT raw_link FROM `link` WHERE `short_link` = "'.$link.'"');
+    $request = $GLOBALS["dbh"]->prepare('SELECT raw_link, click_count, publish FROM `link` WHERE `short_link` = "'.$link.'"');
     $request->execute();
     $result = $request->fetch();
+    if ($result['publish'] == 0) {
+        return "./dashboard/index.php";
+    }
+    $click = $result['click_count']+1;
+    $request = $GLOBALS["dbh"]->prepare('UPDATE `link` SET `click_count`='.$click.' WHERE `short_link` = "'.$link.'"');
+    $request->execute();
+
     return $result['raw_link'];
+}
+
+
+function userList(): array
+{
+    $request = $GLOBALS["dbh"]->prepare('SELECT * FROM `users`');
+    $request->execute();
+    $result = $request->fetchAll();
+    return $result;
+}
+function getUser()
+{
+    $request = $GLOBALS["dbh"]->prepare('SELECT * FROM `users` WHERE email = "' . $_SESSION['email'] . '"');
+    $request->execute();
+    $result = $request->fetch();
+    return $result;
+}
+function updateUser(array $array)
+{
+    $password = md5($array["password"]);
+    $request = $GLOBALS["dbh"]->prepare('UPDATE users SET firstname ="' . $array["firstname"] . '",lastname ="' . $array["lastname"] . '",email ="' . $array["email"] . '",password ="' . $password . '" WHERE email = "' . $_SESSION['email'] . '" ');
+    $request->execute();
+    $_SESSION["email"] = $array["email"];
 }

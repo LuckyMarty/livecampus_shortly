@@ -21,7 +21,7 @@ require_once('./inc/functions/data.php');
         <p><?= $data['sub-title'] ?></p>
 
         <div class="buttons">
-            <a href="#" class="btn-signup"><?= $data['signup'] ?></a>
+            <a href="signup.php" class="btn-signup"><?= $data['signup'] ?></a>
             <a href="./login.php" class="btn-signin"><?= $data['signin'] ?></a>
         </div>
     </div>
